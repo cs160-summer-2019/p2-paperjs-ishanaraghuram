@@ -10,12 +10,111 @@
 	<script type="text/javascript" src="{% static 'coloring/vendors/paper/paper-full.min.js' %}"></script>
   
   <script>
-    function both(){
-      share();
-      frienda();
-      friendb();
-      friendc();
+    var realcounta = 1;
+    var realcountb = 1;
+    var realcountc = 1;
+    var counta = realcounta;
+    var countb = realcountb;
+    var countc = realcountc;
+    var MasterList = {"Friend A" :1, "Friend B": 1, "Friend C": 1};
+    function contributors(){
+      conthome();
+      addbtn();
+      
     }
+    
+        function conthome(){    
+      var addscreen = document.createElement("div");
+      addscreen.id = "contributors-homescreen";
+      addscreen.style.position = "absolute";
+      addscreen.style.top = "850px";
+      addscreen.style.left = "200px";
+      addscreen.style.width = "1000px";
+      addscreen.style.height = "650px";
+      addscreen.style.background = "#f2f2f2";
+      addscreen.style.color = "white";
+      document.body.appendChild(addscreen);
+      
+        }
+    
+         function addbtn(){
+         var cap = document.createElement("P");
+       cap.id ="cap";
+       cap.style.position = "absolute";
+       cap.style.top = "-50px";
+       cap.style.right = "500px";
+       cap.style.width = "400px";
+       cap.style.height = "65px";
+       cap.style.font = "black";
+       cap.style.fontSize = "70px";
+       cap.style.color = "black";
+       cap.innerHTML = "Contributors";
+       document.getElementById("contributors-homescreen").appendChild(cap);
+       for(var key in MasterList) {
+          var value = MasterList[key];
+          if (value == 0){
+            if(key == "Friend A"){frienda("contributors-homescreen");}
+            if(key == "Friend B"){friendb("contributors-homescreen");}
+            if(key == "Friend C"){friendc("contributors-homescreen");}
+          }
+       }
+         
+       var addbtn = document.createElement("button");
+       addbtn.id ="addbtn";
+       addbtn.style.borderRadius = "50%";
+       addbtn.onclick = function(){quickadd();}
+       addbtn.style.background = "#FFFFFF";
+       addbtn.style.position = "absolute";
+       addbtn.style.top = "550px";
+       addbtn.style.border = "1px solid black";
+       addbtn.style.height = "80px";
+       addbtn.style.width = "80px";
+       addbtn.innerHTML = "+";
+       addbtn.style.fontSize = "60px";
+       document.getElementById("contributors-homescreen").appendChild(addbtn);
+       donebtn("contributors-homescreen", function(){}, function(){}, removed)
+      }
+    function removed(){
+      conthome();
+      okaybtn();
+      whoshares();
+    }
+    
+    function quickadd(){
+      document.getElementById("contributors-homescreen").remove();
+      share();
+      yourfriends();
+      donebtn("popup", conthome, okaybtn, whoshares);
+      frienda("popup");
+      friendb("popup");
+      friendc("popup");
+      colorcheck(persona, realcounta);
+      colorcheck(personb, realcountb);
+      colorcheck(personc, realcountc);
+    
+    }
+    
+    function whoshares(){
+      var whoshares = document.createElement("P");
+       whoshares.style.position = "absolute";
+       whoshares.style.top = "50px";
+       whoshares.style.right = "400px";
+       whoshares.style.width = "400px";
+       whoshares.style.height = "65px";
+       whoshares.style.font = "black";
+       whoshares.style.fontSize = "40px";
+       whoshares.style.color = "black";
+       var message = "You are now sharing your work with:"+" ";
+       for(var key in MasterList) {
+          var value = MasterList[key];
+          if (value == 0){message = message + key + ","+" "}
+       }
+       message = message.slice(0, message.length - 2);         
+       whoshares.innerHTML = message 
+
+       document.getElementById("contributors-homescreen").appendChild(whoshares);
+    }
+
     function share(){    
       var div = document.createElement("div");
       div.id = "popup";
@@ -28,34 +127,139 @@
       div.style.color = "white";
 document.body.appendChild(div);
     }
-       function frienda(){
+    
+               function yourfriends(){
+       var cap = document.createElement("P");
+       cap.id ="cap";
+       cap.style.position = "absolute";
+       cap.style.top = "-50px";
+       cap.style.right = "400px";
+       cap.style.width = "400px";
+       cap.style.height = "65px";
+       cap.style.font = "black";
+       cap.style.fontSize = "70px";
+       cap.style.color = "black";
+       cap.innerHTML = "Your Friends";
+       document.getElementById("popup").appendChild(cap);
+           }
+    
+           function donebtn(area, f1, f2, f3){
+       var done = document.createElement("button");
+       done.id ="done";
+       done.style.borderradius = "40%";
+       done.style.position = "absolute";
+       done.style.top = "500px";
+       done.style.right = "10px"
+       done.style.height = "100px"
+       done.style.width = "200px"
+       done.innerHTML = "Done"
+       done.style.fontSize = "70px"
+       done.onclick = function(){document.getElementById(area).remove();
+                                realcounta = counta;
+                                realcountb = countb;
+                                realcountc = countc;
+                                MasterList["Friend A"] = realcounta;
+                                MasterList["Friend B"] = realcountb;
+                                MasterList["Friend C"] = realcountc;
+                                f1();
+                                f2();
+                                f3();
+                                }
+       done.style.background = "#FFFFFF";
+       document.getElementById(area).appendChild(done);
+           }
+    
+             function okaybtn(){
+       var ok = document.createElement("button");
+       ok.id ="ok";
+       ok.style.borderradius = "40%";
+       ok.style.position = "absolute";
+       ok.style.top = "400px";
+       ok.style.right = "400px"
+       ok.style.height = "100px"
+       ok.style.width = "200px"
+       ok.innerHTML = "Okay"
+       ok.style.fontSize = "70px"
+       ok.onclick = function(){document.getElementById("contributors-homescreen").remove();}
+       ok.style.background = "#FFFFFF";
+       document.getElementById("contributors-homescreen").appendChild(ok);
+             }   
+       function frienda(area){
        var persona = document.createElement("button");
-       persona.id ="persona"
-       persona.onclick = function(){setColora("persona");}
-       persona.style.width = "100px";
-       persona.style.height = "65px";
-       persona.style.background = "red";
-       document.getElementById("popup").appendChild(persona);
-      }
-           function friendb(){
+       persona.classList.add('frndbtn');
+       persona.id ="persona";
+       persona.style.borderradius = "40%";
+       persona.style.position = "absolute";
+       persona.style.top = "200px";
+       persona.onclick = function(){count = setColora("persona", counta);}
+       persona.style.background = "#FFFFFF";
+       document.getElementById(area).appendChild(persona);
+  
+       var labela = document.createElement("P");
+       labela.id ="labela";
+       labela.style.position = "absolute";
+       labela.style.top = "100px"
+       labela.style.right = "200px"
+       labela.style.width = "400px";
+       labela.style.height = "65px";
+       labela.style.font = "black";
+       labela.style.fontSize = "70px";
+       labela.style.color = "black";
+       labela.innerHTML = "Friend A";
+       document.getElementById(area).appendChild(labela);
+       colorchecka();
+           }
+
+    
+           function friendb(area){
        var personb = document.createElement("button");
-       personb.id ="personb"
+       personb.classList.add('frndbtn');
+       personb.id ="personb";
+       personb.style.position = "absolute";
+       personb.style.top = "300px";
        personb.onclick = function(){setColorb("personb");}
-       personb.style.width = "100px";
-       personb.style.height = "65px";
-       personb.style.background = "red";
-       document.getElementById("popup").appendChild(personb);
-      }
-           function friendc(){
+       personb.style.background = "#FFFFFF";
+       document.getElementById(area).appendChild(personb);
+
+       var labelb = document.createElement("P");
+       labelb.id ="labelb";
+       labelb.style.position = "absolute";
+       labelb.style.right = "200px";
+       labelb.style.top = "200px"
+       labelb.style.width = "400px";
+       labelb.style.height = "65px";
+       labelb.style.font = "black";
+       labelb.style.fontSize = "70px";
+       labelb.style.color = "black";
+       labelb.innerHTML = "Friend B";
+       document.getElementById(area).appendChild(labelb);
+       colorcheckb();
+           }
+    
+           function friendc(area){
        var personc = document.createElement("button");
-       personc.id ="personc"
+       personc.classList.add('frndbtn');
+       personc.id ="personc";
+       personc.style.position = "absolute";
+       personc.style.top = "400px";
        personc.onclick = function(){setColorc("personc");}
-       personc.style.width = "100px";
-       personc.style.height = "65px";
-       personc.style.background = "red";
-       document.getElementById("popup").appendChild(personc);
-      }
-    var counta = 1;
+       personc.style.background = "#FFFFFF";
+       document.getElementById(area).appendChild(personc);
+
+       var labelc = document.createElement("P");
+       labelc.id ="labelc";
+       labelc.style.position = "absolute";
+       labelc.style.right = "200px";
+       labelc.style.top = "300px"
+       labelc.style.width = "400px";
+       labelc.style.height = "65px";
+       labelc.style.font = "black";
+       labelc.style.fontSize = "70px";
+       labelc.style.color = "black";
+       labelc.innerHTML = "Friend C";
+       document.getElementById(area).appendChild(labelc);
+       colorcheckc();
+           }
     function setColora(btn) {
         var property = document.getElementById(btn);
         if (counta == 0) {
@@ -63,31 +267,51 @@ document.body.appendChild(div);
             counta = 1;        
         }
         else {
-            property.style.backgroundColor = "red"
+            property.style.backgroundColor = "blue"
             counta = 0;
     }}
-          var countb = 1;
-    function setColorb(btn) {
+       function setColorb(btn) {
         var property = document.getElementById(btn);
         if (countb == 0) {
             property.style.backgroundColor = "#FFFFFF"
             countb = 1;        
         }
         else {
-            property.style.backgroundColor = "red"
+            property.style.backgroundColor = "blue"
             countb = 0;
     }}
-          var countc = 1;
-    function setColorc(btn) {
+       function setColorc(btn) {
         var property = document.getElementById(btn);
         if (countc == 0) {
             property.style.backgroundColor = "#FFFFFF"
             countc = 1;        
         }
         else {
-            property.style.backgroundColor = "red"
+            property.style.backgroundColor = "blue"
             countc = 0;
     }}
+ 
+       function colorchecka() {
+        if (realcounta == 1) {
+            document.getElementById("persona").style.backgroundColor = "#FFFFFF"      
+        }
+        else {
+            document.getElementById("persona").style.backgroundColor = "blue"
+        }}
+           function colorcheckb() {
+        if (realcountb == 1) {
+            document.getElementById("personb").style.backgroundColor = "#FFFFFF"      
+        }
+        else {
+            document.getElementById("personb").style.backgroundColor = "blue"
+        }}
+          function colorcheckc() {
+        if (realcountc == 1) {
+            document.getElementById("personc").style.backgroundColor = "#FFFFFF"      
+        }
+        else {
+            document.getElementById("personc").style.backgroundColor = "blue"
+        }}
   </script>
 
 	<style type="text/css">
@@ -110,14 +334,20 @@ document.body.appendChild(div);
 		}
 
 		#myCanvas {
-			padding-left: 25%;
 		    padding-right: 0;
 		    margin-left: auto;
 		    margin-right: auto;
 		    display: block;
-      padding-top: 100px;
 		}
 	</style>
+  <style>
+    .frndbtn{
+      height: 40px;
+      width: 40px;
+      border-radius: 50%;
+      border: 1px solid black;
+    }
+  </style>
 
 	<script type="text/javascript" canvas="canvas">
 		window.onload = function() {
@@ -128,6 +358,7 @@ document.body.appendChild(div);
 				item: null,
 				lastClicked: null,
 				filePath: '/static/coloring/images/mandala-freepik.svg'
+        
 			};	
 
 			// color palette
@@ -239,10 +470,10 @@ document.body.appendChild(div);
 	</script>
 </head>
 <body>	
-	<canvas id="myCanvas" width="750px" height="750px"></canvas>
+	<canvas id="myCanvas" width="750px" height="750px" style ="position: absolute; top: 100px;left: 300px;"></canvas>
 	<div id="color-palette"></div>
-   <div style="position: absolute; top: 1620px; width:1366px;height:200px;background-color:#f2f2f2; border:1px solid #000; border-radius: 25px;">
-     <button onclick = "both()" style = "vertical-align: bottom; float: right; top: 1000px; border:1px solid #000; border-radius: 20px; background-color: PowderBlue; font-size: 70px;" > SHARE
+   <div id = "bottom-screen" style="position: absolute; top: 1620px; width:1366px;height:200px;background-color:#f2f2f2; border:1px solid #000; border-radius: 25px;">
+     <button onclick = "contributors()" style = "vertical-align: bottom; float: right; top: 1000px; border:1px solid #000; border-radius: 20px; background-color: PowderBlue; font-size: 70px;" > SHARE
   </button>
   </div>
 
