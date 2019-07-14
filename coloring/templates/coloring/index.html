@@ -9,7 +9,7 @@
 	<script type="text/javascript" src="{% static 'coloring/vendors/jquery/jquery-3.3.1.min.js' %}"></script>
 	<script type="text/javascript" src="{% static 'coloring/vendors/paper/paper-full.min.js' %}"></script>
   
-  <script>
+  <script id="other">
     var realcounta = 1;
     var realcountb = 1;
     var realcountc = 1;
@@ -27,6 +27,8 @@
       var addscreen = document.createElement("div");
       addscreen.id = "contributors-homescreen";
       addscreen.style.position = "absolute";
+      addscreen.style.border = "1px solid #000";
+      addscreen.style.borderRadius = "20px";
       addscreen.style.top = "850px";
       addscreen.style.left = "200px";
       addscreen.style.width = "1000px";
@@ -41,8 +43,11 @@
          var cap = document.createElement("P");
        cap.id ="cap";
        cap.style.position = "absolute";
+       cap.style.fontFamily = "avenir";
+       cap.style.fontWeight = "light";
        cap.style.top = "-50px";
-       cap.style.right = "500px";
+       cap.style.right = "300px";
+//        cap.style.textAlign = "center";
        cap.style.width = "400px";
        cap.style.height = "65px";
        cap.style.font = "black";
@@ -65,7 +70,10 @@
        addbtn.onclick = function(){quickadd();}
        addbtn.style.background = "#FFFFFF";
        addbtn.style.position = "absolute";
+       addbtn.style.fontFamily = "avenir";
+       addbtn.style.fontWeight = "light";
        addbtn.style.top = "550px";
+       addbtn.style.left = "30px";
        addbtn.style.border = "1px solid black";
        addbtn.style.height = "80px";
        addbtn.style.width = "80px";
@@ -97,12 +105,14 @@
     function whoshares(){
       var whoshares = document.createElement("P");
        whoshares.style.position = "absolute";
+       whoshares.style.fontFamily = "avenir";
+       whoshares.style.fontWeight = "light";
        whoshares.style.top = "50px";
-       whoshares.style.right = "400px";
-       whoshares.style.width = "400px";
-       whoshares.style.height = "65px";
+       whoshares.style.right = "100px";
+       whoshares.style.width = "800px";
+       whoshares.style.height = "100px";
        whoshares.style.font = "black";
-       whoshares.style.fontSize = "40px";
+       whoshares.style.fontSize = "60px";
        whoshares.style.color = "black";
        var message = "You are now sharing your work with:"+" ";
        for(var key in MasterList) {
@@ -123,6 +133,8 @@
       div.style.left = "200px";
       div.style.width = "1000px";
       div.style.height = "650px";
+      div.style.border = "1px solid #000";
+      div.style.borderRadius = "20px";
       div.style.background = "#f2f2f2";
       div.style.color = "white";
 document.body.appendChild(div);
@@ -132,8 +144,10 @@ document.body.appendChild(div);
        var cap = document.createElement("P");
        cap.id ="cap";
        cap.style.position = "absolute";
+       cap.style.fontFamily = "avenir";
+       cap.style.fontWeight = "light";
        cap.style.top = "-50px";
-       cap.style.right = "400px";
+       cap.style.right = "300px";
        cap.style.width = "400px";
        cap.style.height = "65px";
        cap.style.font = "black";
@@ -148,10 +162,14 @@ document.body.appendChild(div);
        done.id ="done";
        done.style.borderradius = "40%";
        done.style.position = "absolute";
-       done.style.top = "500px";
-       done.style.right = "10px"
+       done.style.fontFamily = "avenir";
+       done.style.fontWeight = "light";
+       done.style.border = "1px solid #000";
+       done.style.borderRadius = "20px";
+       done.style.top = "535px";
+       done.style.right = "30px"
        done.style.height = "100px"
-       done.style.width = "200px"
+       done.style.width = "300px"
        done.innerHTML = "Done"
        done.style.fontSize = "70px"
        done.onclick = function(){document.getElementById(area).remove();
@@ -174,8 +192,12 @@ document.body.appendChild(div);
        ok.id ="ok";
        ok.style.borderradius = "40%";
        ok.style.position = "absolute";
-       ok.style.top = "400px";
-       ok.style.right = "400px"
+       ok.style.fontFamily = "avenir";
+       ok.style.fontWeight = "light";
+       ok.style.border = "1px solid #000";
+       ok.style.borderRadius = "20px";
+       ok.style.top = "520px";
+       ok.style.right = "50px"
        ok.style.height = "100px"
        ok.style.width = "200px"
        ok.innerHTML = "Okay"
@@ -191,6 +213,7 @@ document.body.appendChild(div);
        persona.style.borderradius = "40%";
        persona.style.position = "absolute";
        persona.style.top = "200px";
+       persona.style.left = "30px";
        persona.onclick = function(){count = setColora("persona", counta);}
        persona.style.background = "#FFFFFF";
        document.getElementById(area).appendChild(persona);
@@ -198,8 +221,10 @@ document.body.appendChild(div);
        var labela = document.createElement("P");
        labela.id ="labela";
        labela.style.position = "absolute";
+       labela.style.fontFamily = "avenir";
+       labela.style.fontWeight = "light";
        labela.style.top = "100px"
-       labela.style.right = "200px"
+       labela.style.right = "470px"
        labela.style.width = "400px";
        labela.style.height = "65px";
        labela.style.font = "black";
@@ -216,6 +241,7 @@ document.body.appendChild(div);
        personb.classList.add('frndbtn');
        personb.id ="personb";
        personb.style.position = "absolute";
+       personb.style.left = "30px";
        personb.style.top = "300px";
        personb.onclick = function(){setColorb("personb");}
        personb.style.background = "#FFFFFF";
@@ -224,7 +250,9 @@ document.body.appendChild(div);
        var labelb = document.createElement("P");
        labelb.id ="labelb";
        labelb.style.position = "absolute";
-       labelb.style.right = "200px";
+       labelb.style.fontFamily = "avenir";
+       labelb.style.fontWeight = "light";
+       labelb.style.right = "470px";
        labelb.style.top = "200px"
        labelb.style.width = "400px";
        labelb.style.height = "65px";
@@ -241,6 +269,7 @@ document.body.appendChild(div);
        personc.classList.add('frndbtn');
        personc.id ="personc";
        personc.style.position = "absolute";
+       personc.style.left = "30px";
        personc.style.top = "400px";
        personc.onclick = function(){setColorc("personc");}
        personc.style.background = "#FFFFFF";
@@ -249,7 +278,9 @@ document.body.appendChild(div);
        var labelc = document.createElement("P");
        labelc.id ="labelc";
        labelc.style.position = "absolute";
-       labelc.style.right = "200px";
+       labelc.style.fontFamily = "avenir";
+       labelc.style.fontWeight = "light";
+       labelc.style.right = "470px";
        labelc.style.top = "300px"
        labelc.style.width = "400px";
        labelc.style.height = "65px";
@@ -267,7 +298,7 @@ document.body.appendChild(div);
             counta = 1;        
         }
         else {
-            property.style.backgroundColor = "blue"
+            property.style.backgroundColor = "#9aa297"
             counta = 0;
     }}
        function setColorb(btn) {
@@ -277,7 +308,7 @@ document.body.appendChild(div);
             countb = 1;        
         }
         else {
-            property.style.backgroundColor = "blue"
+            property.style.backgroundColor = "#9aa297"
             countb = 0;
     }}
        function setColorc(btn) {
@@ -287,7 +318,7 @@ document.body.appendChild(div);
             countc = 1;        
         }
         else {
-            property.style.backgroundColor = "blue"
+            property.style.backgroundColor = "#9aa297"
             countc = 0;
     }}
  
@@ -296,21 +327,21 @@ document.body.appendChild(div);
             document.getElementById("persona").style.backgroundColor = "#FFFFFF"      
         }
         else {
-            document.getElementById("persona").style.backgroundColor = "blue"
+            document.getElementById("persona").style.backgroundColor = "#9aa297"
         }}
            function colorcheckb() {
         if (realcountb == 1) {
             document.getElementById("personb").style.backgroundColor = "#FFFFFF"      
         }
         else {
-            document.getElementById("personb").style.backgroundColor = "blue"
+            document.getElementById("personb").style.backgroundColor = "#9aa297"
         }}
           function colorcheckc() {
         if (realcountc == 1) {
             document.getElementById("personc").style.backgroundColor = "#FFFFFF"      
         }
         else {
-            document.getElementById("personc").style.backgroundColor = "blue"
+            document.getElementById("personc").style.backgroundColor = "#9aa297"
         }}
   </script>
 
@@ -473,9 +504,12 @@ document.body.appendChild(div);
 	<canvas id="myCanvas" width="750px" height="750px" style ="position: absolute; top: 100px;left: 300px;"></canvas>
 	<div id="color-palette"></div>
    <div id = "bottom-screen" style="position: absolute; top: 1620px; width:1366px;height:200px;background-color:#f2f2f2; border:1px solid #000; border-radius: 25px;">
-     <button onclick = "contributors()" style = "vertical-align: bottom; float: right; top: 1000px; border:1px solid #000; border-radius: 20px; background-color: PowderBlue; font-size: 70px;" > SHARE
+     <button onclick = "contributors()" style = "vertical-align: bottom; float: right; top: 1100px; border:1px solid #000; border-radius: 20px; background-color: PowderBlue; font-size: 70px; font-family: 'avenir';" > SHARE
   </button>
+<!--      <img src="data:image/png;base64,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">
+     </img> -->
   </div>
+  <script id="other" style="font-family:'avenir';"></script>
 
 </body>
 </html>
